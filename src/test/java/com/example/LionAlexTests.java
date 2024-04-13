@@ -14,15 +14,14 @@ public class LionAlexTests {
     @Mock
     private Feline feline;
     private LionAlex lionAlex;
-    private final int expectedLionChildren = 0;
     private final List<String> expectedFriends = List.of("Марти", "Глория", "Мелман");
-    private final String expectedPlace = "Нью-Йоркский зоопарк";
 
     @Test
     public void testGetKittens() throws Exception {
         lionAlex = new LionAlex(feline);
         int actual = lionAlex.getKittens();
 
+        int expectedLionChildren = 0;
         assertEquals("Количество лвят не соответствует ожидаемому",
                 expectedLionChildren, actual);
     }
@@ -32,7 +31,7 @@ public class LionAlexTests {
         lionAlex = new LionAlex(feline);
         List<String> actual = lionAlex.getFriends();
 
-        assertEquals("писок друзей не соответствует ожидаемому",
+        assertEquals("Список друзей не соответствует ожидаемому",
                 expectedFriends, actual);
     }
 
@@ -41,6 +40,7 @@ public class LionAlexTests {
         lionAlex = new LionAlex(feline);
         String actual = lionAlex.getPlaceOfLiving();
 
+        String expectedPlace = "Нью-Йоркский зоопарк";
         assertEquals("Некорректное место проживания льва",
                 expectedPlace,actual);
     }

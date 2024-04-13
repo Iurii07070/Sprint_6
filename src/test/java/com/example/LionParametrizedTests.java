@@ -12,10 +12,9 @@ import static org.junit.Assert.assertEquals;
 public class LionParametrizedTests {
     private static final String MALE = "Самец";
     private static final String FEMALE = "Самка";
-    private Lion lion;
     private Feline feline;
-    private String sex;
-    private boolean hasMane;
+    private final String sex;
+    private final boolean hasMane;
 
     @Before
     public void setUp() {
@@ -37,7 +36,7 @@ public class LionParametrizedTests {
 
     @Test
     public void testDoesHaveMane() throws Exception {
-        lion = new Lion(sex, feline);
+        Lion lion = new Lion(sex, feline);
         boolean actual = lion.doesHaveMane();
         assertEquals(hasMane, actual);
     }

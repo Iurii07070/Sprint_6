@@ -17,8 +17,8 @@ public class AnimalFoodParametrizedTests {
     private static final List<String> FOODS_HERBIVORE = List.of("Трава", "Различные растения");
     private static final List<String> FOODS_PREDATOR = List.of("Животные", "Птицы", "Рыба");
 
-    private String animalKind;
-    private List<String> foods;
+    private final String animalKind;
+    private final List<String> foods;
 
     public AnimalFoodParametrizedTests(String animalKind, List<String> foods) {
         this.animalKind = animalKind;

@@ -1,6 +1,5 @@
 package com.example;
 
-import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,9 +20,7 @@ public class AnimalTests {
 
     @Test
     public void testGetFoodException() {
-        Throwable throwable = catchThrowable(() -> {
-            animal.getFood(UNSUPPORTED_ANIMAL_KIND);
-        });
+        Throwable throwable = catchThrowable(() -> animal.getFood(UNSUPPORTED_ANIMAL_KIND));
         assertThat(throwable)
                 .isInstanceOf(Exception.class)
                 .hasMessage(TEXT_EXCEPTION);

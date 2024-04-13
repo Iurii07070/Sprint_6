@@ -1,6 +1,5 @@
 package com.example;
 
-import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -8,7 +7,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.catchThrowable;
+import static org.junit.Assert.assertThrows;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LionTests {
@@ -28,14 +27,14 @@ public class LionTests {
     }
 
     @Test
-    public void testDoesHaveManeException() {
-        Throwable throwable = catchThrowable(() -> {
-            lion = new Lion(UNSUPPORTED_SEX, feline);
-        });
-        assertThat(throwable)
-                .isInstanceOf(Exception.class)
-                .hasMessage(TEXT_EXCEPTION);
+    public void testUnsupportedSexThrowsException() {
+        // Arrange & Act
+        Throwable throwable = assertThrows(Exception.class, () -> lion = new Lion(UNSUPPORTED_SEX, feline));
+
+        // Assert
+        assertThat(throwable).hasMessage(TEXT_EXCEPTION);
     }
+
 
     @Test
     public void testGetFood() throws Exception {
