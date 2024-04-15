@@ -6,7 +6,10 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -28,19 +31,20 @@ public class LionTests {
 
     @Test
     public void testUnsupportedSexThrowsException() {
-        // Arrange & Act
         Throwable throwable = assertThrows(Exception.class, () -> lion = new Lion(UNSUPPORTED_SEX, feline));
-
-        // Assert
         assertThat(throwable).hasMessage(TEXT_EXCEPTION);
     }
 
-
     @Test
     public void testGetFood() throws Exception {
-        lion = new Lion(MALE, feline);
+        Lion lion = new Lion(MALE, feline);
+        List<String> expectedFood = List.of("Животные", "Птицы", "Рыба");
+        Mockito.when(feline.getFood("Хищник")).thenReturn(expectedFood);
 
-        lion.getFood();
-        Mockito.verify(feline).getFood(Mockito.anyString());
+        List<String> actual = lion.getFood();
+
+        assertEquals(expectedFood, actual);
+        Mockito.verify(feline, Mockito.times(1)).getFood("Хищник");
     }
+
 }
