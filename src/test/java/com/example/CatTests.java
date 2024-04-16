@@ -2,7 +2,8 @@ package com.example;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Spy;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(MockitoJUnitRunner.class)
 public class CatTests {
 
-    @Spy
+    @Mock
     private Feline feline;
 
     @Test
@@ -26,8 +27,13 @@ public class CatTests {
     public void testGetFood() throws Exception {
         Cat cat = new Cat(feline);
 
-        List<String> actual = cat.getFood();
         List<String> expectedFood = List.of("Животные", "Птицы", "Рыба");
+        Mockito.when(feline.eatMeat()).thenReturn(expectedFood);
+
+        List<String> actual = cat.getFood();
+
         assertEquals(expectedFood, actual);
     }
+
 }
+

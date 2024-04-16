@@ -39,12 +39,12 @@ public class LionTests {
     public void testGetFood() throws Exception {
         Lion lion = new Lion(MALE, feline);
         List<String> expectedFood = List.of("Животные", "Птицы", "Рыба");
-        Mockito.when(feline.getFood("Хищник")).thenReturn(expectedFood);
+        Mockito.when(feline.getFood(Mockito.eq("Хищник"))).thenReturn(expectedFood);
 
         List<String> actual = lion.getFood();
 
         assertEquals(expectedFood, actual);
         Mockito.verify(feline, Mockito.times(1)).getFood("Хищник");
     }
-
 }
+
